@@ -139,93 +139,98 @@ SonarQube es una plataforma de código abierto que evalúa la calidad del códig
 
 ### Instalación
 
-Existen dos formas de realizar la instalación, una que es con el [zip](https://www.sonarsource.com/products/sonarqube/downloads/success-download-community-edition/) y la otra que es mediante una imagen de Docker, la cual considero que es más sencilla.
 
-Iniciamos corriendo el Docker Desktop e ingresamos en el cmd el siguiente comando:
+Para integrar SonarCloud con el repositorio en GitHub, es necesario configurar un secreto que contenga el token de acceso a SonarCloud. Esto asegurará que el token esté protegido y solo accesible para el repositorio.
 
+1. Nos dirigimos a la pestaña "Settings" (Configuración) del repositorio en GitHub.
+2. Hacemos clic en "Secrets" (Secretos) en el menú de la izquierda.
+3. En la página de "Secrets", hacemos clic en "New repository secret" (Nuevo secreto de repositorio).
+4. En el campo "Name" (Nombre), ingresamos `SONAR_TOKEN`.
+5. En el campo "Value" (Valor), ingresamos el token de acceso a SonarCloud. 
+
+#### Crear o actualizar un archivo de construcción
+
+El siguiente paso es configurar el archivo de construcción para que SonarCloud pueda analizar el código y proporcionar comentarios útiles.
+
+##### Opciones de construcción disponibles:
+
+- Maven
+- Gradle
+- C, C++ o ObjC
+- .NET
+- Otros (para JavaScript, TypeScript, Go, Python, PHP, etc.)
+
+Dependiendo de la tecnología de construcción, se selecciona la opción correspondiente.
+
+##### Actualizar el archivo `pom.xml` (para proyectos Maven)
+
+Abrimos el archivo `pom.xml` y nos aseguramos de agregar las siguientes propiedades:
+
+```xml
+<properties>
+  <sonar.organization>jaiderarleygonzalez</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
 ```
-docker run -d --name sonarqube -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
-```
 
-El comando docker run se utiliza para crear y ejecutar un contenedor Docker a partir de una imagen específica. Aquí está el desglose del comando:
+Estas propiedades son necesarias para configurar la integración con SonarCloud.
 
-- docker run: Inicia la ejecución de un contenedor Docker.
-- -d: Ejecuta el contenedor en segundo plano (modo daemon).
-- --name sonarqube: Asigna el nombre "sonarqube" al contenedor.
-- -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true: Configura la variable de entorno SONAR_ES_BOOTSTRAP_CHECKS_DISABLE como true. Esta variable se utiliza para deshabilitar las comprobaciones de inicio de Elasticsearch en SonarQube.
-- -p 9000:9000: Mapea el puerto 9000 del host al puerto 9000 del contenedor. Esto permite acceder a SonarQube a través del puerto 9000 del host.
-- sonarqube:latest: Especifica la imagen de SonarQube a utilizar para crear el contenedor. En este caso, se utiliza la etiqueta "latest", lo que significa que se utilizará la última versión disponible de la imagen "sonarqube".
+##### Crear o actualizar el archivo .github/workflows/build.yml
 
-![](/img/comando.png)
+En este archivo YAML, se configuran las acciones de GitHub para ejecutar un análisis de SonarCloud en el código.
 
-Podemos comprobar que el contenedor se creó correctamente aquí:
-
-![](/img/contenedor.png)
-
-
-Una vez que tu instancia esté en funcionamiento, inicia sesión en [http://localhost:9000](http://localhost:9000) utilizando las credenciales del Administrador del Sistema:
-
-* Usuario: admin
-* Contraseña: admin
-
-Ya luego podrás cambiar la contraseña a la que desees.
-
-![](/img/login.png)
-
-En este caso el proyecto que yo voy a crear será local
-
-![](/img/local.png)
-
-seguimos los siguientes pasos:
-
-![](/img/pasos.png)
-
-Creamos el yaml .github/workflows/build.yml
-
-y añadimos lo siguiente:
-```
-name: Build
-
+```yaml
+name: SonarCloud
 on:
   push:
     branches:
-      - main
-
-
+      - Upgrade-spring-boot
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   build:
-    name: Build
+    name: Compilar y analizar
     runs-on: ubuntu-latest
-    permissions: read-all
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
+          fetch-depth: 0  # Deshabilitar los clones superficiales para una mejor relevancia del análisis
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v3
         with:
           java-version: 17
-      - name: Cache SonarQube packages
-        uses: actions/cache@v1
+          distribution: 'zulu' # Opciones de distribución alternativas están disponibles.
+      - name: Caché de paquetes de SonarCloud
+        uses: actions/cache@v3
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-      - name: Cache Maven packages
-        uses: actions/cache@v1
+      - name: Caché de paquetes de Maven
+        uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build and analyze
+      - name: Compilar y analizar
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Necesario para obtener información de la PR, si la hay
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=online-shopping-csdt -Dsonar.projectName='online-shopping-csdt'
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=JaiderArleyGonzalez_Refactoring-online-shopping-CSDT
 ```
+
+Este archivo YAML define una acción de GitHub que ejecutará el análisis de SonarCloud en tu rama principal y en las solicitudes de extracción.
+
+Una vez completados estos pasos, habremos configurado correctamente la integración de SonarCloud con el repositorio en GitHub. Cada vez que realizamos un push en una rama o una solicitud de extracción, se desencadenará automáticamente un análisis de SonarCloud, proporcionando valiosos comentarios sobre la calidad del código.
+
+
 ### ¿Qué podemos ver ahora?
 
+Así logramos analizar el proyecto con GitHub Actions
 
+![](/img/vistag.png)
+
+![](/img/codeSmells.png)
 
 #### 1. Análisis del Código Fuente:
 SonarQube realiza un análisis exhaustivo del código fuente de una aplicación en múltiples lenguajes de programación, incluidos Java, JavaScript, Python, C#, entre otros. Examina aspectos como la complejidad del código, las violaciones de estándares de codificación, la duplicación de código y la cobertura de pruebas.
@@ -316,4 +321,6 @@ Dentro del proyecto de Refactorización de Compras en Línea, varios puntos se v
 **Eficiencia y Flujo:** La implementación de prácticas como la refactorización continua y la automatización de pruebas ayuda a mejorar la eficiencia del proceso de desarrollo, reduciendo el tiempo dedicado a actividades manuales y propensas a errores. Esto permite que el equipo se centre en agregar valor al producto y mantener un flujo de trabajo constante y productivo.
 
 Hasta el momento, el proyecto ha aplicado el framework SPACE principalmente a través de la mejora de la calidad del código y la adopción de prácticas de desarrollo centradas en el bienestar del equipo y la eficiencia del proceso. Se han introducido pruebas unitarias, se ha realizado refactorización continua y se ha integrado la herramienta SonarQube para analizar y mejorar la calidad del código. Estas acciones han contribuido a crear un entorno de trabajo más satisfactorio, mejorar el rendimiento del equipo y promover una comunicación y colaboración más efectivas.
+
+
 
