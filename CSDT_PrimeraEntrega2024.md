@@ -230,31 +230,53 @@ Así logramos analizar el proyecto con GitHub Actions
 
 ![](/img/vistag.png)
 
+![](/img/r.png)
+
 ![](/img/codeSmells.png)
 
 #### 1. Análisis del Código Fuente:
 SonarQube realiza un análisis exhaustivo del código fuente de una aplicación en múltiples lenguajes de programación, incluidos Java, JavaScript, Python, C#, entre otros. Examina aspectos como la complejidad del código, las violaciones de estándares de codificación, la duplicación de código y la cobertura de pruebas.
 
+![](/img/calidad.png)
+
 #### 2. Detección de Problemas de Calidad y Seguridad:
 Identifica y clasifica una amplia variedad de problemas potenciales en el código, como vulnerabilidades de seguridad, errores de programación, malas prácticas de codificación y posibles cuellos de botella de rendimiento. Estos problemas se presentan en un tablero de control intuitivo que proporciona una visión general de la salud del proyecto.
+
+![](/img/seguridad.png)
+
+![](/img/pojo.png)
+
+![](/img/cat.png)
 
 #### 3. Métricas de Calidad del Código:
 SonarQube genera métricas detalladas sobre la calidad del código, como el índice de mantenibilidad, la complejidad ciclomática, la duplicación de código y la cobertura de pruebas. Estas métricas ayudan a los equipos a comprender mejor la estructura y la calidad del código base.
 
+![](/img/cleancode.png)
+
 #### 4. Seguimiento de Tendencias y Evolución del Código:
 Permite a los equipos realizar un seguimiento de la evolución del código a lo largo del tiempo mediante gráficos y visualizaciones que muestran la mejora o degradación de la calidad del código en diferentes versiones del software. Esto facilita la identificación de áreas problemáticas y la evaluación del impacto de los cambios realizados en el código.
+
+![](/img/mante.png)
 
 #### 5. Integración con Herramientas de Desarrollo:
 SonarQube se integra fácilmente con herramientas de desarrollo y sistemas de integración continua (CI) como Jenkins, GitLab CI, GitHub Actions, entre otros. Esto permite la ejecución automatizada de análisis de código en cada confirmación de código y proporciona retroalimentación instantánea a los desarrolladores.
 
+![](/img/actions.png)
+
 #### 6. Personalización y Configuración Flexible:
 Los usuarios pueden personalizar y configurar las reglas de análisis de código según las necesidades específicas del proyecto y del equipo. Esto permite adaptar SonarQube a los estándares de codificación y políticas de calidad internas de la organización.
+
+![](/img/code.png)
 
 #### 7. Informes Detallados y Documentación:
 SonarQube genera informes detallados que contienen resultados de análisis de código, métricas de calidad y recomendaciones de mejora. Estos informes pueden ser compartidos con el equipo de desarrollo, los líderes del proyecto y otras partes interesadas para facilitar la toma de decisiones informadas.
 
+![](/img/detalle.png)
+
 #### 8. Mejora Continua del Software:
 Al proporcionar una visión integral de la calidad del código y las áreas problemáticas, SonarQube ayuda a los equipos de desarrollo a priorizar y abordar los problemas de manera proactiva. Esto fomenta una cultura de mejora continua del software y contribuye a la entrega de aplicaciones más seguras, confiables y eficientes.
+
+![](/img/mejora.png)
 
 ## Implementación con Copilot
 
