@@ -346,3 +346,114 @@ Hasta el momento, el proyecto ha aplicado el framework SPACE principalmente a tr
 
 
 
+## Análisis de Seguridad CodeQL
+
+CodeQL es una herramienta de análisis estático de código desarrollada por GitHub que permite encontrar vulnerabilidades de seguridad, errores de codificación y otros problemas en el código fuente de diversos lenguajes de programación.
+
+### Instalación y Configuración en GitHub Actions
+
+Para integrar CodeQL en el flujo de trabajo de GitHub Actions, se siguen estos pasos:
+
+1. **Agrega el archivo `codeql.yml` a tus workflows:**
+
+   Creamos el archivo `codeql.yml` en el directorio `.github/workflows` del repositorio. Debe contener:
+
+   ```yaml
+   name: "CodeQL"
+
+   on:
+     push:
+       branches: [ "Upgrade-spring-boot" ]
+     pull_request:
+       branches: [ "Upgrade-spring-boot" ]
+     schedule:
+       - cron: '18 17 * * 4'
+
+   jobs:
+     analyze:
+       name: Analyze (${{ matrix.language }})
+       runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+       timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+       permissions:
+         security-events: write
+         packages: read
+         actions: read
+         contents: read
+
+       strategy:
+         fail-fast: false
+         matrix:
+           include:
+           - language: java-kotlin
+             build-mode: none
+           - language: javascript-typescript
+             build-mode: none
+
+       steps:
+       - name: Checkout repository
+         uses: actions/checkout@v4
+
+       - name: Initialize CodeQL
+         uses: github/codeql-action/init@v3
+         with:
+           languages: ${{ matrix.language }}
+           build-mode: ${{ matrix.build-mode }}
+
+       - if: matrix.build-mode == 'manual'
+         run: |
+           echo 'If you are using a "manual" build mode for one or more of the' \
+             'languages you are analyzing, replace this with the commands to build' \
+             'your code, for example:'
+           echo '  make bootstrap'
+           echo '  make release'
+           exit 1
+
+       - name: Perform CodeQL Analysis
+         uses: github/codeql-action/analyze@v3
+         with:
+           category: "/language:${{matrix.language}}"
+    ```
+
+    Este archivo define un flujo de trabajo llamado "CodeQL" que ejecutará análisis estáticos de código en ramas específicas y en horarios programados.
+2. Una vez agregado o modificado el archivo codeql.yml, se realiza un commit de los cambios y luego un push hacia el repositorio en GitHub.
+
+### Resultados de CodeQL
+
+CodeQL proporciona una variedad de resultados después de realizar un análisis estático de código del proyecto.
+
+![](/img/codeql.png) 
+
+#### Vulnerabilidades de Seguridad
+
+CodeQL puede identificar vulnerabilidades de seguridad conocidas y potenciales en el código fuente. Estas vulnerabilidades pueden incluir:
+
+- Inyecciones de SQL
+- Desbordamientos de búfer
+- Vulnerabilidades de deserialización
+- Exposición de datos sensibles
+- Vulnerabilidades de Cross-Site Scripting (XSS)
+- Problemas de control de acceso inadecuado
+
+![](/img/secure.png)
+
+#### Errores de Codificación
+
+Además de las vulnerabilidades de seguridad, CodeQL también puede detectar una variedad de errores de codificación comunes, que pueden incluir:
+
+- Uso incorrecto de funciones y métodos
+- Uso de variables no inicializadas
+- Uso de operadores lógicos incorrectos
+- Errores de sintaxis
+- Errores de manejo de excepciones
+
+#### Mejoras de Calidad de Código
+
+CodeQL puede proporcionar sugerencias y recomendaciones para mejorar la calidad del código, lo que incluye:
+
+- Uso de patrones de diseño incorrectos
+- Código redundante o no utilizado
+- Violaciones de buenas prácticas de codificación
+- Complejidad ciclomática alta
+- Duplicación de código
+
+![](/img/s.png)
