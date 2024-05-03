@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mejorando el Código: Prácticas y Principios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- Fuente principal -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- Iconos -->
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- Popup para imágenes -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">       <!-- CSS principal -->
+
+    <style>
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .blog-post h2 {
+            font-size: 2em;
+            color: #3498db;
+        }
+        .blog-post h3 {
+            font-size: 1.5em;
+            color: #2ecc71;
+        }
+        .blog-post ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .blog-post hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+        .blog-post blockquote {
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- Content -->
+    <main>
+        <div class="blog-post">
+            <h2>Clean Code: Prácticas y Principios</h2>
+            <img src="img/clean.jpg" alt="Clean Code">
+            <p>Para mantener la calidad del código y asegurar un desarrollo sostenible, es crucial seguir principios de diseño y prácticas de desarrollo ágiles. Aquí exploramos algunos de los problemas comunes que violan los principios de Clean Code y cómo se pueden abordar.</p>
+
+            <hr>
+
+            <h3>¿En qué se está fallando?</h3>
+            <p>Existen varios problemas que deben ser abordados para mejorar la calidad del código. A continuación se describen algunos de los principales errores y violaciones de principios de programación:</p>
+
+            <h3>Principio "You Aren't Gonna Need It":</h3>
+            <blockquote>
+                La clase AddressServiceImpl contiene métodos como saveAddress() y findAddressByBilling() que pueden no ser necesarios en este momento. Evitar agregar funcionalidades innecesarias ayuda a mantener el código limpio y manejable.
+            </blockquote>
+            <img src="img/add.png" alt="Clean Code">
+            <h3>Principio "Keep it Simple, Stupid":</h3>
+            <blockquote>
+                En CategoryServiceImpl, el método findAllCategories() podría simplificarse usando consultas específicas en lugar de filtrar en el código. En deleteCategory(), la eliminación directa sería más simple que marcar como inactivo.
+            </blockquote>
+            <img src="img/cate.png" alt="Clean Code">
+            <h3>Principio "Don't Repeat Yourself":</h3>
+            <blockquote>
+                En ProductServiceImpl, el filtrado de productos inactivos se repite en varios métodos. Encapsular esta lógica en un método privado reduciría la duplicación y mejoraría la coherencia del código.
+            </blockquote>
+
+            <hr>
+
+            <h3>Principios de Programación que no se cumplen</h3>
+            <p>Varios principios de programación están siendo violados, lo cual puede conducir a código menos flexible y más difícil de mantener.</p>
+
+            <h3>Principio de Responsabilidad Única (SRP):</h3>
+            <blockquote>
+                UserServiceImpl maneja la codificación de contraseñas y la gestión de usuarios, violando el SRP. Estos deberían ser dos componentes separados para mantener el código modular y más fácil de probar.
+            </blockquote>
+            <img src="img/usr.png" alt="Clean Code">
+            <h3>Principio de Abierto/Cerrado (OCP):</h3>
+            <blockquote>
+                En CategoryServiceImpl, el método findAllCategories() debería ser extensible sin modificar la clase. Usar mecanismos como especificaciones o criterios de filtrado sería más acorde con el principio OCP.
+            </blockquote>
+
+            <h3>Principio de Sustitución de Liskov (LSP):</h3>
+            <blockquote>
+                UserModel debería poder sustituir a User sin cambiar el comportamiento del sistema. Si UserModel tiene atributos o comportamientos adicionales que User no tiene, podría estar violando el LSP.
+            </blockquote>
+
+            <h3>Principio de Inversión de Dependencia (DIP):</h3>
+            <blockquote>
+                Las clases de servicio están fuertemente acopladas a las implementaciones de repositorio, violando el DIP. Invertir las dependencias para que las clases de servicio dependan de abstracciones sería un mejor enfoque.
+            </blockquote>
+
+            <hr>
+
+            <h3>Prácticas XP para mejorar la calidad del código</h3>
+            <ul>
+                <li><strong>Integración Continua:</strong> Configurar un sistema de CI para automatizar pruebas y construcción del proyecto. Esto permite identificar problemas rápidamente y mantener un código funcional.</li>
+                <li><strong>Refactorización Continua:</strong> Practicar la refactorización continua, eliminando duplicaciones y simplificando la lógica para mejorar la estructura del código.</li>
+                <li><strong>Pruebas Unitarias:</strong> Escribir pruebas unitarias automatizadas para garantizar el funcionamiento correcto de partes específicas del código y ejecutarlas automáticamente como parte del proceso de integración continua.</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="js/plugins.js"></script> <!-- Script para funcionalidad interactiva -->
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

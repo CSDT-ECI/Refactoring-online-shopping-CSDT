@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactoring Online Shopping</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/specimen/Kumbh+Sans -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- https://fontawesome.com/-->  
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- https://dimsemenov.com/plugins/magnific-popup/ -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">
+<!--
+
+Tooplate 2124 Vertex
+
+https://www.tooplate.com/view/2124-vertex
+
+-->
+
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+
+    <!-- Nav -->
+    <nav class="tm-nav">
+        <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul id="tm-main-nav">
+            <li class="nav-item">                                
+                <a href="#intro" class="nav-link current">
+                    Introducción
+                </a>
+            </li>
+          
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <main>
+        <div id="intro" class="tm-section">
+            <!-- Intro left -->
+            <div class="tm-section-col tm-content">
+                <div class="tm-media">
+                    <img src="img/gallery/tn/img-11.jpg" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a class="tm-text-primary">Sobre el proyecto...</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            El proyecto online-shopping es una aplicación de comercio electrónico desarrollada utilizando tecnologías como Spring Boot, Spring Web Flow, Spring Rest Services y Hibernate. También incluye Spring Security con configuración en Java y anotaciones.
+                        </p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+    
+                <div class="tm-media">
+                    <img src="img/gallery/tn/img-12.jpg" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a href="codesmells.html" class="tm-text-primary">Code smells</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            El proyecto presenta varios problemas que afectan su calidad y mantenimiento. Se observan métodos largos en clases de servicios, lo que dificulta la comprensión del código. Hay duplicación de código, especialmente en la lógica de validación, lo que genera inconsistencia. Algunas clases actúan como intermediarios innecesarios, señalando un posible acoplamiento excesivo. El uso de tipos primitivos para conceptos clave reduce la expresividad del código, y los nombres de métodos y variables son a menudo poco claros. Además, la falta de pruebas unitarias compromete la estabilidad y confiabilidad del sistema.</p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+                <div class="tm-media">
+                    <img src="img/gallery/tn/img.jpg" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a href="cleancode.html" class="tm-text-primary">Clean code</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            El proyecto tiene problemas que violan principios de código limpio, como YAGNI, KISS y DRY. Métodos en AddressServiceImpl parecen innecesarios, mientras que el filtrado de categorías en CategoryServiceImpl podría simplificarse para evitar lógica extra. En ProductServiceImpl, la duplicación de código para filtrar productos inactivos se puede reducir consolidando esta lógica en un solo lugar. Además, se rompen principios de diseño clave: UserServiceImpl viola el principio de Responsabilidad Única (SRP) al manejar tanto la codificación de contraseñas como la gestión de usuarios, y las clases de servicio están fuertemente acopladas a las implementaciones de repositorio, incumpliendo el principio de Inversión de Dependencia (DIP). </p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+                <div class="tm-media">
+                    <img src="img/gallery/tn/img-18.jpg" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a href="deudat.html" class="tm-text-primary">Abordando Deuda Técnica</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            Se añadieron pruebas unitarias para mejorar la calidad y funcionamiento del proyecto de compras en línea. Antes, solo había una prueba documentada, pero ahora hay un conjunto que verifica las clases principales del paquete com.isolutions4u.onlineshopping.model. Estas pruebas aseguran que elementos clave como Address, CartLine, Cart, Category, Product, RegisterModel, UserModel y User estén funcionando correctamente. Para ejecutar las pruebas, se usa el comando mvn test en el directorio del proyecto. Se realizaron 50 pruebas, lo que mejora la confiabilidad y estabilidad del sistema, contribuyendo a una mejor experiencia para los usuarios.
+                        </p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+
+                <div class="tm-media">
+                    <img src="img/gallery/tn/sonar.png" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a href="sonarcloud.html" class="tm-text-primary">Análisis con Herramienta SonarCloud</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            SonarCloud es un servicio en la nube que analiza el código fuente para identificar problemas relacionados con calidad, seguridad y mantenibilidad. Ofrece herramientas para detectar errores, código duplicado, complejidad innecesaria y vulnerabilidades, proporcionando métricas y sugerencias para mejorar el código. Se integra con plataformas como GitHub, GitLab y Bitbucket para automatizar la revisión de código con cada cambio, facilitando el proceso de integración continua. SonarCloud ayuda a los equipos de desarrollo a mantener altos estándares de calidad, ofreciendo informes detallados y métricas que permiten rastrear la evolución del código y abordar problemas de manera proactiva. Esto fomenta una cultura de mejora continua y contribuye a la creación de software más seguro y confiable.</p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+                <div class="tm-media">
+                    <img src="img/gallery/tn/dev.png" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a href="devex.html" class="tm-text-primary">Desarrollo de Experiencia (DevEx) en el Proyecto</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            El Desarrollo de Experiencia (DevEx) busca mejorar la productividad y satisfacción de los desarrolladores. En el proyecto de refactorización de compras en línea, se aplicaron pruebas unitarias, refactorización y SonarQube, lo que mejoró la calidad y mantenibilidad del código, redujo la deuda técnica y aumentó la confiabilidad del sistema. Sin embargo, hay áreas que necesitan mayor aplicación de principios SOLID, como responsabilidad única e inversión de dependencia. Además, la introducción de herramientas como SonarQube puede añadir complejidad al proceso de desarrollo. A pesar de estos desafíos, las mejoras realizadas han tenido un impacto positivo en la experiencia del desarrollador.</p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+                <div class="tm-media">
+                    <img src="img/gallery/tn/space.png" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a href="space.html" class="tm-text-primary">SpaceFramework</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            El modelo SPACE evalúa cinco áreas clave para mejorar la productividad y bienestar en equipos de desarrollo: satisfacción y bienestar, rendimiento, actividad, comunicación y colaboración, y eficiencia y flujo. En el proyecto de Refactorización de Compras en Línea, aplicar el modelo SPACE ayudó a mejorar la calidad del código y a reducir la deuda técnica, promoviendo un entorno de trabajo más satisfactorio. El rendimiento aumentó con pruebas unitarias y análisis estático, permitiendo correcciones más rápidas. La comunicación y colaboración mejoraron con la integración continua y revisiones de código. La eficiencia y flujo se incrementaron con la refactorización continua y la automatización de tareas. Estas mejoras crean un entorno más productivo y colaborativo para el equipo de desarrollo.</p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+                <div class="tm-media">
+                    <img src="img/gallery/tn/ql.png" alt="Intro image">
+                    <div class="tm-media-body">
+                        <h2><a href="ql.html" class="tm-text-primary">Análisis de Seguridad CodeQL</a></h2>
+                        <p class="tm-mb-20 tm-text-small">
+                            
+CodeQL es una herramienta de análisis estático de código de GitHub que detecta vulnerabilidades de seguridad, errores de codificación y otros problemas en varios lenguajes de programación. Para usarla en GitHub Actions, se configura un archivo de flujo de trabajo (codeql.yml) en el directorio .github/workflows. Este archivo define cuándo y cómo se realiza el análisis, incluyendo la ejecución en ramas específicas y horarios programados. CodeQL puede identificar vulnerabilidades como inyecciones de SQL, desbordamientos de búfer, y problemas de Cross-Site Scripting (XSS), además de errores de codificación como uso incorrecto de funciones, variables no inicializadas y errores de manejo de excepciones. También ofrece sugerencias para mejorar la calidad del código, abordando problemas como código redundante, complejidad ciclomática alta y violaciones de buenas prácticas de codificación.
+
+
+
+
+
+</p>
+                        
+                        <hr class="tm-hr tm-mr">
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+            <!-- Intro right -->
+            <div class="tm-section-col tm-parallax" data-parallax="scroll" data-image-src="img/vertex-bg-01.jpg"></div>
+        </div> <!-- #intro -->
+
+       
+       
+
+        
+            
+            <!-- Contact right -->
+            
+        <!-- #contact -->
+    </main>
+
+    <script src="js/plugins.js"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+
+        $(function(){
+            
+            /*************** Navigation *****************/
+
+            const tmMainNav = $("#tm-main-nav");
+
+            tmMainNav.singlePageNav({
+                filter: ':not(.external)'
+            });
+
+            $('.navbar-toggler').click(function(e) {
+                e.stopPropagation();
+                tmMainNav.toggleClass('show');
+            });
+
+            $("html").click(function(e) {
+                $("#tm-main-nav").removeClass("show");
+            });
+
+            /****************** Smooth Scrolling *****************/
+
+            $(".tm-btn-next").on('click', function(event) {
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+                        // window.location.hash = hash;
+                    });
+                }
+            });
+
+            $('.tm-brand-icon').on('click', function(event) {
+                $('html, body').animate({
+                        scrollTop: $('#intro').offset().top
+                    }, 800);
+            });
+
+            /****************** Gallery ******************/
+
+            const galleryItems = document.querySelector(".tm-gallery").children;
+            const itemsPerPage = 10;
+            const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+            const pageAttribute = 'data-page';
+
+            function setPagination(currentPage) {
+                for(let i = 1; i <= totalPages; i++) {
+                    var $pager = '';
+                    
+                    if(currentPage == i) {
+                        $pager = $('<a href="javascript:void(0);" class="active tm-paging-link" '+pageAttribute+'="'+i+'"></a>');
+                    } else {
+                        $pager = $('<a href="javascript:void(0);" class="tm-paging-link" '+pageAttribute+'="'+i+'"></a>');
+                    }
+
+                    $pager.html(i);
+
+                    $pager.click(function(){ 
+                        $('.tm-paging-link').removeClass("active");
+                        $(this).addClass('active');
+                        var page = $(this).eq(0).attr(pageAttribute);
+                        showItems(page);
+                    });
+
+                    $pager.appendTo($('.tm-paging'));
+                }
+            }
+
+            function showItems(currentPage) {
+                for(let i = 0; i < galleryItems.length; i++) {
+                    galleryItems[i].classList.remove("show");
+                    galleryItems[i].classList.add("hide");
+
+                    if(i >= (currentPage * itemsPerPage) - itemsPerPage && i < currentPage * itemsPerPage) {
+                        galleryItems[i].classList.remove("hide");
+                        galleryItems[i].classList.add("show");
+                    }
+                }
+            }
+
+            setPagination(1);
+            showItems(1);
+
+            /****************** Magnific Popup ***********/
+
+            $('.tm-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactorización de Código</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- Fuente principal -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- Iconos -->
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- Popup para imágenes -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">       <!-- CSS principal -->
+
+    <style>
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .blog-post h2 {
+            font-size: 2em;
+            color: #3498db;
+        }
+        .blog-post h3 {
+            font-size: 1.5em;
+            color: #2ecc71;
+        }
+        .blog-post ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .blog-post hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+        .blog-post blockquote {
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- Content -->
+    <main>
+        <div class="blog-post">
+            <h2>Refactorización de Código</h2>
+            <img src="img/refac.png" alt="Refactorización de código">
+            <p>La refactorización es un proceso esencial en el desarrollo de software para mantener el código limpio y fácil de mantener. A continuación, se detallan algunas de las áreas clave donde se necesitan mejoras.</p>
+
+            <hr>
+
+            <h3>Code Smells</h3>
+            <p>Los "code smells" son indicadores de problemas potenciales en el código que pueden requerir refactorización. A continuación se detallan algunos de los code smells observados en el proyecto:</p>
+
+            <h3>Funcionalidades Principales:</h3>
+            <ul>
+                <li>Gestión de Usuarios: Registro, inicio de sesión y administración de perfil.</li>
+                <li>Gestión de Productos: Navegar por una lista de productos, ver detalles y agregar productos al carrito.</li>
+                <li>Carrito de Compras: Añadir, editar y procesar pedidos.</li>
+                <li>Seguridad: Sistema basado en roles con Spring Security (ADMIN, USER).</li>
+            </ul>
+            <img src="img/arq.png" alt="Refactorización de código">
+            <h3>Long Method:</h3>
+            <blockquote>
+                Los métodos largos y complejos dificultan el mantenimiento. Se recomienda dividir funciones largas en métodos más pequeños y específicos para mejorar la legibilidad y mantenibilidad.
+            </blockquote>
+            <img src="img/extenso.png" alt="Refactorización de código">
+            <h3>Duplicate Code:</h3>
+            <blockquote>
+                El código duplicado es una señal de refactorización necesaria. Consolidar código repetitivo en un método compartido puede reducir errores y facilitar cambios futuros.
+            </blockquote>
+
+            <h3>Middle Man:</h3>
+            <blockquote>
+                Clases como CartServiceImpl actúan como intermediarios sin valor agregado. Esto puede indicar acoplamiento excesivo y puede requerir reestructuración para eliminar intermediarios innecesarios.
+            </blockquote>
+            <img src="img/cartS.png" alt="Refactorización de código">
+            <h3>Primitive Types:</h3>
+            <blockquote>
+                El uso de tipos primitivos para conceptos clave puede ser sustituido por clases más descriptivas, proporcionando un contexto de dominio más rico y claro.
+            </blockquote>
+
+            <h3>Uncommunicative Name:</h3>
+            <blockquote>
+                Los nombres poco comunicativos pueden complicar la comprensión del código. Los nombres de métodos como saveCategory y findCategoryById deben ser más descriptivos y claros.
+            </blockquote>
+
+            <h3>Falta de pruebas unitarias:</h3>
+            <blockquote>
+                La falta de pruebas unitarias compromete la estabilidad del código. Implementar pruebas unitarias es crucial para asegurar la confiabilidad del sistema.
+            </blockquote>
+
+            <hr>
+
+            <h3>Técnicas de Refactorización</h3>
+            <p>Para abordar los problemas detectados, se aplicarán las siguientes técnicas de refactorización:</p>
+            <ul>
+                <li><strong>Long Method:</strong> Dividir métodos largos para mejorar la legibilidad.</li>
+                <li><strong>Duplicate Code:</strong> Consolidar código duplicado para evitar inconsistencias.</li>
+                <li><strong>Primitive Obsession:</strong> Encapsular tipos primitivos en clases más descriptivas para mejorar la semántica y el contexto del dominio.</li>
+                <li><strong>Feature Envy:</strong> Ajustar métodos para evitar dependencia excesiva entre clases y promover una mejor cohesión.</li>
+                <li><strong>Lazy Class:</strong> Evaluar clases menos utilizadas y considerar si pueden fusionarse con otras o eliminarse por completo para optimizar la estructura del código.</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="js/plugins.js"></script> <!-- Script para funcionalidad interactiva -->
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

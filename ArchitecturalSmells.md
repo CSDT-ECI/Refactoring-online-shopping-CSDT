@@ -1,6 +1,6 @@
-# Architectural Smells en un Proyecto de Comercio Electrónico
+# Architectural Smells
 
-Los architectural smells son señales de posibles problemas en el diseño y estructura de un proyecto de software. En este proyecto de comercio electrónico, basado en Spring Boot y varias otras tecnologías, se identificaron algunos architectural smells. A continuación se describen cada uno de ellos, junto con recomendaciones para abordar estas preocupaciones y mejorar la arquitectura del proyecto.
+Los architectural smells son señales de posibles problemas en el diseño y estructura de un proyecto de software. En este proyecto de comercio electrónico, basado en Spring Boot y varias otras tecnologías, se identificaron algunos architectural smells. A continuación se describen cada uno de ellos.
 
 ## 1. Falta de Modularidad
 

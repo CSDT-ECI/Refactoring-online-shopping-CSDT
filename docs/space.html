@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo de Experiencia (DevEx): Modelo SPACE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- Fuente principal -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- Iconos -->
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- Popup para imágenes -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">       <!-- CSS principal -->
+
+    <style>
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .blog-post h2 {
+            font-size: 2em;
+            color: #3498db;
+        }
+        .blog-post h3 {
+            font-size: 1.5em;
+            color: #2ecc71;
+        }
+        .blog-post ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .blog-post hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+        .blog-post blockquote {
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- Content -->
+    <main>
+        <div class="blog-post">
+            <h2>Modelo SPACE</h2>
+            <img src="img/space.jpg" alt="Modelo SPACE">
+            <p>El modelo SPACE (Satisfaction and well-being, Performance, Activity, Communication and collaboration, Efficiency and Flow) se utiliza para medir y mejorar la productividad y el bienestar de los desarrolladores. En este artículo, exploramos cómo se ha aplicado el modelo SPACE en el proyecto de refactorización de compras en línea y los resultados obtenidos.</p>
+
+            <hr>
+
+            <h3>¿Qué es el modelo SPACE?</h3>
+            <p>SPACE es un marco de evaluación que aborda cinco áreas clave para mejorar la productividad y satisfacción en el proceso de desarrollo de software: satisfacción y bienestar, rendimiento, actividad, comunicación y colaboración, y eficiencia y flujo. Al evaluar cada área con métricas específicas, se puede obtener una imagen clara del estado del equipo de desarrollo y tomar medidas para optimizar el entorno laboral.</p>
+
+            <hr>
+
+            <h3>Análisis del Modelo SPACE</h3>
+            <p>Dentro del proyecto de Refactorización de Compras en Línea, se han observado varias mejoras a partir de la implementación del modelo SPACE:</p>
+            <ul>
+                <li><strong>Satisfacción y Bienestar:</strong> Mejoras en la calidad del código y la reducción de deuda técnica han contribuido a un entorno laboral más positivo y menos estresante.</li>
+                <li><strong>Rendimiento:</strong> Pruebas unitarias automatizadas y herramientas de análisis estático como SonarQube han aumentado la eficacia del equipo, permitiendo una entrega más rápida de funcionalidades.</li>
+                <li><strong>Comunicación y Colaboración:</strong> La promoción de la integración continua y la revisión de código ha mejorado la comunicación entre equipos y facilitado la colaboración efectiva.</li>
+                <li><strong>Eficiencia y Flujo:</strong> Prácticas como la refactorización continua y la automatización de pruebas han mejorado la eficiencia del proceso de desarrollo, permitiendo un flujo de trabajo más productivo.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Conclusión</h3>
+            <p>La implementación del modelo SPACE en el proyecto ha demostrado ser beneficiosa para el equipo de desarrollo y la calidad del código. Al centrarse en la satisfacción, rendimiento, comunicación, y eficiencia, el equipo ha logrado una mayor productividad y un entorno laboral más positivo. A medida que el proyecto continúa evolucionando, el modelo SPACE seguirá siendo una herramienta valiosa para mantener la mejora continua y el bienestar del equipo.</p>
+        </div>
+    </main>
+
+    <script src="js/plugins.js"></script> <!-- Script para funcionalidad interactiva -->
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

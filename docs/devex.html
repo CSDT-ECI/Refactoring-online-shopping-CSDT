@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo de Experiencia (DevEx) en el Proyecto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- Fuente principal -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- Iconos -->
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- Popup para imágenes -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">       <!-- CSS principal -->
+
+    <style>
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .blog-post h2 {
+            font-size: 2em;
+            color: #3498db;
+        }
+        .blog-post h3 {
+            font-size: 1.5em;
+            color: #2ecc71;
+        }
+        .blog-post ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .blog-post hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+        .blog-post blockquote {
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- Content -->
+    <main>
+        <div class="blog-post">
+            <h2>Desarrollo de Experiencia (DevEx) en el Proyecto</h2>
+            <img src="img/devex.jpg" alt="DevEx">
+            <p>El Desarrollo de Experiencia (DevEx) se enfoca en mejorar la productividad y satisfacción de los desarrolladores. En el contexto del proyecto de refactorización de compras en línea, se han aplicado varias prácticas y herramientas para optimizar el desarrollo y el mantenimiento del código.</p>
+
+            <hr>
+
+            <h3>Puntos Positivos</h3>
+            <ul>
+                <li><strong>Mejora de la calidad del código:</strong> Pruebas unitarias, refactorización y SonarQube han contribuido a mejorar la calidad del código, haciéndolo más robusto y menos propenso a errores.</li>
+                <li><strong>Cumplimiento de estándares de codificación:</strong> La refactorización continua y la integración de SonarQube ayudan a seguir los estándares de codificación, promoviendo coherencia y mantenibilidad.</li>
+                <li><strong>Reducción de deuda técnica:</strong> Abordar code smells y agregar pruebas unitarias ha ayudado a reducir la deuda técnica acumulada, mejorando la estabilidad del sistema.</li>
+                <li><strong>Mayor confiabilidad y estabilidad del sistema:</strong> Pruebas unitarias automatizadas y SonarQube han aumentado la confianza en el sistema al identificar y corregir problemas antes de que lleguen a producción.</li>
+                <li><strong>Facilitación del mantenimiento del código:</strong> La refactorización para abordar code smells facilita el mantenimiento continuo, haciéndolo más comprensible y fácil de modificar.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Puntos Negativos</h3>
+            <ul>
+                <li><strong>Necesidad de mayor enfoque en principios SOLID:</strong> Aunque se han realizado mejoras significativas, aún hay espacio para aplicar principios SOLID, especialmente en áreas como responsabilidad única e inversión de dependencia.</li>
+                <li><strong>Complejidad adicional en la configuración de herramientas:</strong> La introducción de SonarQube y la configuración de integración continua puede agregar una capa adicional de complejidad, requiriendo más tiempo y recursos para mantener.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Conclusión</h3>
+            <p>El desarrollo de experiencia (DevEx) en este proyecto ha tenido un impacto positivo en la calidad del código y en la productividad de los desarrolladores. Aunque existen áreas para mejorar, el uso de pruebas unitarias, SonarQube y otras herramientas ayuda a mantener un alto estándar de calidad y a fomentar una cultura de mejora continua.</p>
+        </div>
+    </main>
+
+    <script src="js/plugins.js"></script> <!-- Script para funcionalidad interactiva -->
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

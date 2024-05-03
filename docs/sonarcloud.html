@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abordando Deuda Técnica: SonarCloud y Copilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- Fuente principal -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- Iconos -->
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- Popup para imágenes -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">       <!-- CSS principal -->
+
+    <style>
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .blog-post h2 {
+            font-size: 2em;
+            color: #3498db;
+        }
+        .blog-post h3 {
+            font-size: 1.5em;
+            color: #2ecc71;
+        }
+        .blog-post ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .blog-post hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+        .blog-post blockquote {
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div la="loader-section section-right"></div>
+    </div>
+
+    <!-- Content -->
+    <main>
+        <div class="blog-post">
+            <h2>Análisis con Herramienta SonarCloud</h2>
+            <img src="img/so.png" alt="SonarCloud">
+            <p>SonarCloud es un servicio en la nube que permite analizar el código fuente para detectar problemas de calidad, seguridad y mantenibilidad. Al integrarse con plataformas de desarrollo como GitHub, facilita la integración continua y proporciona herramientas para mejorar el código.</p>
+
+            <hr>
+
+            <h3>Instalación</h3>
+            <p>Para integrar SonarCloud con GitHub, debes configurar un secreto que contenga el token de acceso a SonarCloud. Aquí están los pasos para hacerlo:</p>
+            <ul>
+                <li>Dirígete a la pestaña "Settings" (Configuración) del repositorio en GitHub.</li>
+                <li>Haz clic en "Secrets" en el menú de la izquierda.</li>
+                <li>En "Secrets", selecciona "New repository secret" (Nuevo secreto de repositorio).</li>
+                <li>En "Name", ingresa `SONAR_TOKEN`.</li>
+                <li>En "Value", ingresa el token de acceso a SonarCloud.</li>
+            </ul>
+
+            <h3>Configuración del Archivo de Construcción</h3>
+            <p>Dependiendo de la tecnología de construcción, debes actualizar el archivo de construcción para permitir el análisis de SonarCloud.</p>
+
+            <h4>Para Proyectos Maven:</h4>
+            <p>Abre el archivo `pom.xml` y agrega las siguientes propiedades:</p>
+            <code>
+                &lt;properties&gt;<br>
+                &nbsp;&nbsp;&lt;sonar.organization&gt;tu_organizacion&lt;/sonar.organization&gt;<br>
+                &nbsp;&nbsp;&lt;sonar.host.url&gt;https://sonarcloud.io&lt;/sonar.host.url&gt;<br>
+                &lt;/properties&gt;
+            </code>
+
+            <h4>Archivo .github/workflows/build.yml</h4>
+            <p>En este archivo YAML, configura las acciones de GitHub para ejecutar el análisis de SonarCloud.</p>
+            <code>
+                name: SonarCloud<br>
+                on:<br>
+                &nbsp;&nbsp;push:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;branches:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- main<br>
+                jobs:<br>
+                &nbsp;&nbsp;build:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;name: Compilar y analizar<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;runs-on: ubuntu-latest<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: actions/checkout@v3<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Configurar JDK 17<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses: actions/setup-java@v3<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Compilar y analizar<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+            </code>
+
+            <h3>¿Qué podemos ver ahora?</h3>
+            <p>SonarCloud nos permite analizar el código fuente y obtener información detallada sobre la calidad y seguridad del proyecto.</p>
+            <img src="img/vistag.png" alt="SonarCloud Dashboard">
+            <img src="img/r.png" alt="SonarCloud Issues">
+            <img src="img/codeSmells.png" alt="SonarCloud Issues">
+            <h4>1. Análisis del Código Fuente:</h4>
+            <blockquote>
+                SonarCloud examina la complejidad del código, violaciones de estándares de codificación y duplicación de código. Permite a los equipos de desarrollo identificar problemas de calidad y seguridad.
+            </blockquote>
+            <img src="img/calidad.png" alt="SonarCloud Issues">
+            <h4>2. Detección de Problemas de Calidad y Seguridad:</h4>
+            <blockquote>
+                SonarCloud detecta vulnerabilidades de seguridad, errores de programación y posibles cuellos de botella de rendimiento. Ofrece una visión general de la salud del proyecto.
+            </blockquote>
+            <img src="img/seguridad.png" alt="SonarCloud Issues">
+            <img src="img/pojo.png" alt="SonarCloud Issues">
+            <img src="img/cat.png" alt="SonarCloud Issues">
+            <h4>3. Métricas de Calidad del Código:</h4>
+            <blockquote>
+                SonarCloud genera métricas detalladas sobre la calidad del código, como el índice de mantenibilidad, la complejidad ciclomática y la cobertura de pruebas.
+            </blockquote>
+            <img src="img/cleancode.png" alt="SonarCloud Issues">
+            <hr>
+
+            <h3>Implementación con Copilot</h3>
+            <p>Copilot es una herramienta de programación asistida por inteligencia artificial que ayuda a escribir código de manera más eficiente mediante sugerencias automáticas. Se ha utilizado para refactorizaciones y pruebas unitarias en este proyecto.</p>
+            
+            <h4>Propósito</h4>
+            <blockquote>
+                El propósito de Copilot es agilizar el proceso de escritura de código, reducir errores y mejorar la calidad del código. Facilita la implementación de pruebas unitarias y refactorización del código existente.
+            </blockquote>
+
+            <h4>Logros</h4>
+            <p>Algunos de los logros obtenidos con Copilot:</p>
+            <ul>
+                <li><strong>Aumento de la productividad:</strong> Copilot acelera la escritura de código al proporcionar sugerencias relevantes en tiempo real.</li>
+                <li><strong>Mejora de la calidad del código:</strong> Copilot sigue mejores prácticas de codificación, mejorando la legibilidad y mantenibilidad.</li>
+                <li><strong>Reducción de errores:</strong> Al generar automáticamente código basado en el contexto, Copilot ayuda a reducir errores humanos.</li>
+                <li><strong>Facilitación del aprendizaje:</strong> Copilot proporciona sugerencias que permiten a los desarrolladores aprender nuevas técnicas y enfoques de codificación.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Conclusión</h3>
+            <p>Con la implementación de SonarCloud y Copilot, el proyecto de refactorización de compras en línea ha mejorado en calidad y productividad. SonarCloud ayuda a mantener un código limpio y seguro, mientras que Copilot acelera el proceso de desarrollo y reduce errores. Juntos, estas herramientas contribuyen a una mejora continua y a la creación de software más seguro y confiable.</p>
+        </div>
+    </main>
+
+    <script src="js/plugins.js"></script> <!-- Script para funcionalidad interactiva -->
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

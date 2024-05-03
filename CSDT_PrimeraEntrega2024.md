@@ -133,9 +133,9 @@ En total se realizaron 50 pruebas unitarias.
 ### Conclusión
 Las pruebas unitarias propuestas cubren una amplia gama de funcionalidades en el proyecto de compras en línea. Al asegurar que estas clases estén correctamente implementadas, se aumenta la confiabilidad y la estabilidad del sistema, lo que resulta en una mejor experiencia para los usuarios finales.
 
-## Análisis con Herramienta Sonarqube
+## Análisis con Herramienta SonarCloud
 
-SonarQube es una plataforma de código abierto que evalúa la calidad del código fuente. Realiza análisis estáticos para identificar bugs, vulnerabilidades, código duplicado y malas prácticas. Ofrece métricas, tableros de control y gestión de deuda técnica. Es altamente personalizable y compatible con una amplia gama de lenguajes y herramientas de desarrollo.
+SonarCloud es un servicio basado en la nube que permite a desarrolladores y equipos de software analizar el código fuente para detectar problemas relacionados con calidad, seguridad y mantenibilidad. Proporciona herramientas para identificar errores, código duplicado, complejidad innecesaria y problemas de seguridad, ofreciendo métricas detalladas y sugerencias para mejorar el código. Al integrarse con plataformas de desarrollo como GitHub, GitLab y Bitbucket, SonarCloud ayuda a mantener la calidad del código durante todo el ciclo de desarrollo, facilitando la integración continua y el desarrollo de software confiable y seguro.
 
 ### Instalación
 

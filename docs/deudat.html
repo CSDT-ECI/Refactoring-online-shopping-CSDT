@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abordando Deuda Técnica: Pruebas Unitarias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- Fuente principal -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- Iconos -->
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- Popup para imágenes -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">       <!-- CSS principal -->
+
+    <style>
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .blog-post h2 {
+            font-size: 2em;
+            color: #3498db;
+        }
+        .blog-post h3 {
+            font-size: 1.5em;
+            color: #2ecc71;
+        }
+        .blog-post ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .blog-post hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+        .blog-post blockquote {
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+
+    <!-- Content -->
+    <main>
+        <div class="blog-post">
+            <h2>Abordando Deuda Técnica: Pruebas Unitarias</h2>
+            <img src="img/junit.jpeg" alt="Pruebas Unitarias">
+            <p>Se han introducido pruebas unitarias para mejorar la calidad y estabilidad del código. Este proyecto inicialmente tenía solo una prueba documentada, pero ahora cuenta con un conjunto completo de pruebas unitarias para diferentes aspectos del sistema.</p>
+
+            <hr>
+
+            <h3>Tema Abordado</h3>
+            <p>Estas pruebas unitarias verifican la funcionalidad de las clases del paquete <code>com.isolutions4u.onlineshopping.model</code>, que son críticas para el funcionamiento del sistema de compras en línea.</p>
+
+            <h3>Pruebas Propuestas</h3>
+            <p>El conjunto de pruebas incluye las siguientes categorías:</p>
+            <ul>
+                <li><strong>AddressTest:</strong> Verifica la configuración y obtención de diferentes atributos de direcciones, como la línea de dirección, ciudad, país, etc.</li>
+                <li><strong>CartLineTest:</strong> Pruebas para la configuración y obtención de atributos de líneas de carrito, como el ID, el total y la cantidad de productos.</li>
+                <li><strong>CartTest:</strong> Examina la funcionalidad del carrito de compras, como el ID del carrito, el gran total y el número de líneas de carrito.</li>
+                <li><strong>CategoryTest:</strong> Pruebas para verificar atributos como ID de categoría, nombre y descripción.</li>
+                <li><strong>ProductTest:</strong> Pruebas relacionadas con productos, incluyendo la configuración de atributos como ID del producto, nombre y descripción.</li>
+                <li><strong>RegisterModelTest:</strong> Verifica la configuración de la dirección de facturación asociada a un modelo de registro de usuario.</li>
+                <li><strong>UserModelTest:</strong> Examina la configuración y obtención de atributos como el ID de usuario, el nombre completo, el correo electrónico y el rol.</li>
+                <li><strong>UserTest:</strong> Se centra en la configuración y obtención de atributos relacionados con usuarios, como el primer nombre, apellido y correo electrónico.</li>
+            </ul>
+
+            <h3>Ejecución de las Pruebas</h3>
+            <p>Para ejecutar las pruebas unitarias, utiliza el siguiente comando en el directorio del proyecto:</p>
+            <code>mvn test</code>
+
+            <p>Deberías obtener un resultado similar a este:</p>
+            <img src="img/Test.png" alt="Resultados de Pruebas">
+            <img src="img/fin.png" alt="Fin de Pruebas">
+            
+            <p>En total, se realizaron 50 pruebas unitarias.</p>
+            <img src="img/tests.png" alt="Resultados de Pruebas">
+            <hr>
+
+            <h3>Conclusión</h3>
+            <p>Con el nuevo conjunto de pruebas unitarias, se cubre una amplia gama de funcionalidades en el sistema de compras en línea. Esto ayuda a mejorar la confiabilidad y estabilidad del código, garantizando una mejor experiencia para los usuarios finales. El uso regular de pruebas unitarias en el proceso de integración continua contribuirá a un sistema más sólido y libre de errores.</p>
+        </div>
+    </main>
+
+    <script src="js/plugins.js"></script> <!-- Script para funcionalidad interactiva -->
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

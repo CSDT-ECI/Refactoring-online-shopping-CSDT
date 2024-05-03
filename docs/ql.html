@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Seguridad con CodeQL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> <!-- Fuente principal -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">  <!-- Iconos -->
+    <link rel="stylesheet" href="css/magnific-popup.css">       <!-- Popup para imágenes -->
+    <link rel="stylesheet" href="css/tooplate-vertex.css">       <!-- CSS principal -->
+
+    <style>
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .blog-post h2 {
+            font-size: 2em;
+            color: #3498db;
+        }
+        .blog-post h3 {
+            font-size: 1.5em;
+            color: #2ecc71;
+        }
+        .blog-post ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .blog-post hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 20px 0;
+        }
+        .blog-post blockquote {
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            color: #555;
+            font-style: italic;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div la-sección derecha loader-section"></div>
+    </div>
+
+    <!-- Content -->
+    <main>
+        <div class="blog-post">
+            <h2>Análisis de Seguridad con CodeQL</h2>
+            <img src="img/qlcode.jpeg" alt="Análisis de Seguridad con CodeQL">
+            <p>CodeQL es una herramienta de análisis estático de código desarrollada por GitHub para identificar vulnerabilidades de seguridad, errores de codificación y otros problemas potenciales en el código fuente. En este artículo, te mostramos cómo se configuró y utilizó en el proyecto de Refactorización de Compras en Línea.</p>
+
+            <hr>
+
+            <h3>Instalación y Configuración en GitHub Actions</h3>
+            <p>Para integrar CodeQL en el flujo de trabajo de GitHub Actions, sigue estos pasos:</p>
+            <ul>
+                <li><strong>Agrega el archivo <code>codeql.yml</code> a tus workflows:</strong> Crea un archivo en <code>.github/workflows</code> con el siguiente contenido:</li>
+            </ul>
+            <code>
+            name: "CodeQL" <br>
+            on: <br>
+            push: { branches: [ "Upgrade-spring-boot" ] } <br>
+            pull_request: { branches: [ "Upgrade-spring-boot" ] } <br>
+            schedule: { cron: '18 17 * * 4' } <br>
+            jobs: { analyze: { name: "Analyze (${{ matrix.language }})", runs-on: "ubuntu-latest", timeout-minutes: 360, steps: [...] } } <br>
+            </code>
+            
+            <h3>Resultados de CodeQL</h3>
+            <p>Después de configurar el archivo <code>codeql.yml</code>, CodeQL realiza un análisis de seguridad del código fuente, proporcionando una amplia gama de resultados.</p>
+
+            <h3>Vulnerabilidades de Seguridad</h3>
+            <p>CodeQL identifica varias vulnerabilidades de seguridad, como:</p>
+            <ul>
+                <li>Inyecciones de SQL</li>
+                <li>Desbordamientos de búfer</li>
+                <li>Problemas de control de acceso inadecuado</li>
+                <li>Vulnerabilidades de Cross-Site Scripting (XSS)</li>
+            </ul>
+            <img src="img/secure.png" alt="Vulnerabilidades de Seguridad con CodeQL">
+
+            <h3>Errores de Codificación</h3>
+            <p>Además de las vulnerabilidades de seguridad, CodeQL también detecta errores de codificación, como:</p>
+            <ul>
+                <li>Uso incorrecto de funciones y métodos</li>
+                <li>Uso de variables no inicializadas</li>
+                <li>Errores de sintaxis</li>
+                <li>Errores de manejo de excepciones</li>
+            </ul>
+
+            <h3>Mejoras de Calidad de Código</h3>
+            <p>CodeQL proporciona sugerencias para mejorar la calidad del código, como:</p>
+            <ul>
+                <li>Eliminación de código redundante</li>
+                <li>Complejidad ciclomática alta</li>
+                <li>Violaciones de buenas prácticas de codificación</li>
+            </ul>
+            <img src="img/codeql.png" alt="Resultados de CodeQL">
+
+            <hr>
+
+            <h3>Conclusión</h3>
+            <p>CodeQL es una herramienta poderosa para analizar el código fuente y encontrar vulnerabilidades de seguridad y errores de codificación. Al integrar CodeQL en GitHub Actions, puedes mantener un alto nivel de seguridad y calidad en el proyecto, identificando y corrigiendo problemas antes de que lleguen a producción.</p>
+            <img src="img/s.png" alt="Resultados de CodeQL">
+        </div>
+    </main>
+
+    <script src="js/plugins.js"></script> <!-- Script para funcionalidad interactiva -->
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>
